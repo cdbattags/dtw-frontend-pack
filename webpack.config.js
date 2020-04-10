@@ -34,19 +34,16 @@ const SRC_DIR = path.join(ROOT_DIR, 'src')
 
 const defaultOptions = {
     staticFiles: [],
-    ROOT_DIR,
-    SRC_DIR,
+    includeDirs: [
+        SRC_DIR,
+        path.join(ROOT_DIR, 'fonts'),
+    ],
 }
 
 module.exports = (
     env,
     options = defaultOptions
 ) => {
-    const {
-        ROOT_DIR,
-        SRC_DIR,
-    } = options
-
     const config = {
         devServer: {
             contentBase: path.join(__dirname, 'dist'),
@@ -91,16 +88,12 @@ module.exports = (
             rules: [
                 {
                     test: /\.vue$/,
-                    include: [
-                        SRC_DIR,
-                    ],
+                    include: options.includeDirs,
                     loader: 'vue-loader',
                 },
                 {
                     test: /\.(tsx?|jsx?)$/,
-                    include: [
-                        SRC_DIR,
-                    ],
+                    include: options.includeDirs,
                     use: [
                         {
                             loader: 'cache-loader',
@@ -116,16 +109,12 @@ module.exports = (
                 },
                 {
                     test: /\.html$/,
-                    include: [
-                        SRC_DIR,
-                    ],
+                    include: options.includeDirs,
                     use: 'raw-loader',
                 },
                 {
                     test: /\.(sc|c)ss$/,
-                    include: [
-                        SRC_DIR,
-                    ],
+                    include: options.includeDirs,
                     use: [
                         {
                             loader: MiniCssExtractPlugin.loader,
@@ -148,20 +137,12 @@ module.exports = (
                 },
                 {
                     test: /\.svg$/,
-                    include: [
-                        SRC_DIR,
-                    ],
+                    include: options.includeDirs,
                     loader: 'svg-inline-loader'
                 },
                 {
                     test: /\.(woff2?|ttf|otf|eot|svg|png)$/,
-                    include: [
-                        SRC_DIR,
-                        path.join(
-                            ROOT_DIR,
-                            'fonts',
-                        )
-                    ],
+                    include: options.includeDirs,
                     loader: 'file-loader',
                     options: {
                         name: '[path][name].[ext]',
