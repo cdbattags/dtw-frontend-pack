@@ -15,17 +15,6 @@ const { DuplicatesPlugin } = require('inspectpack/plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const WebpackAssetsManifest = require('webpack-assets-manifest')
 
-// const vueLoader = require('vue-loader')
-// const cacheLoader = require('cache-loader')
-// const babelLoader = require('babel-loader')
-// const rawLoader = require('raw-loader')
-// const cssLoader = require('css-loader')
-// const postCSSLoader = require('postcss-loader')
-// const resolveURLLoader = require('resolve-url-loader')
-// const sassLoader = require('sass-loader')
-// const svgInlineLoader = require('svg-inline-loader')
-// const fileLoader = require('file-loader')
-
 const babelConfig = require('./babel.config')
 const postCSSConfig = require('./postcss.config')
 
