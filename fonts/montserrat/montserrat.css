@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  src: url("https://files.edx.org/fonts/edx-fonts/montserrat/fonts/Regular/Montserrat-Regular.eot");
+  src: url("https://files.edx.org/fonts/edx-fonts/montserrat/fonts/Regular/Montserrat-Regular.eot?#iefix") format("embedded-opentype"), url("https://files.edx.org/fonts/edx-fonts/montserrat/fonts/Regular/Montserrat-Regular.woff") format("woff"), url("https://files.edx.org/fonts/edx-fonts/montserrat/fonts/Regular/Montserrat-Regular.ttf") format("truetype"), url("https://files.edx.org/fonts/edx-fonts/montserrat/fonts/Regular/Montserrat-Regular.svg#Montserrat-Regular") format("svg"); }
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  src: url("https://files.edx.org/fonts/edx-fonts/montserrat/fonts/Bold/Montserrat-Bold.eot");
+  src: url("https://files.edx.org/fonts/edx-fonts/montserrat/fonts/Bold/Montserrat-Bold.eot?#iefix") format("embedded-opentype"), url("https://files.edx.org/fonts/edx-fonts/montserrat/fonts/Bold/Montserrat-Bold.woff") format("woff"), url("https://files.edx.org/fonts/edx-fonts/montserrat/fonts/Bold/Montserrat-Bold.ttf") format("truetype"), url("https://files.edx.org/fonts/edx-fonts/montserrat/fonts/Bold/Montserrat-Bold.svg#Montserrat-Bold") format("svg"); }

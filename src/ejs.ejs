@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%if (htmlWebpackPlugin.options.baseTag) { %>
+        <base href="<%= htmlWebpackPlugin.options.baseTag %>" />
+    <% } %>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>EJS</title>
+</head>
+
+<body>
+
+    <div id="app-react"></div>
+
+    <div id="app-vue"></div>
+
+</body>
+
+</html>

@@ -1,0 +1,10 @@
+dist
+node_modules
+bin
+scripts
+build
+src/static-libs
+src/static
+webpack*
+modules/
+coverage
