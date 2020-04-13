@@ -15,8 +15,7 @@ const { DuplicatesPlugin } = require('inspectpack/plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const WebpackAssetsManifest = require('webpack-assets-manifest')
 
-const babelConfig = require('./babel.config')
-const postCSSConfig = require('./postcss.config')
+const babelConfig = require('./babel.config.frontend')
 
 const ROOT_DIR = path.resolve(__dirname)
 const SRC_DIR = path.join(ROOT_DIR, 'src')
@@ -31,13 +30,13 @@ const defaultOptions = {
 
 module.exports = (
     env,
-    options = defaultOptions
+    options = defaultOptions,
 ) => {
     const config = {
         devServer: {
             contentBase: path.join(__dirname, 'dist'),
             compress: true,
-            port: 9000
+            port: 9000,
         },
 
         watch: true,
@@ -91,8 +90,8 @@ module.exports = (
                             loader: 'babel-loader',
                             options: {
                                 babelrc: false,
-                                ...babelConfig()
-                            }
+                                ...babelConfig(),
+                            },
                         },
                     ],
                 },
@@ -112,13 +111,23 @@ module.exports = (
                             },
                         },
                         { loader: 'css-loader' },
-                        { loader: 'postcss-loader' },
+                        {
+                            loader: 'postcss-loader',
+                            options: {
+                                plugins: [
+                                    autoprefixer(),
+                                ],
+                            },
+                        },
                         { loader: 'resolve-url-loader' },
                         {
                             loader: 'sass-loader',
                             options: {
                                 sassOptions: {
                                     importer: globImporter(),
+                                    // includePaths: [
+                                    //     path.resolve(APP_DIR, 'node_modules'),
+                                    // ],
                                 },
                             },
                         },
@@ -127,7 +136,7 @@ module.exports = (
                 {
                     test: /\.svg$/,
                     include: options.includeDirs,
-                    loader: 'svg-inline-loader'
+                    loader: 'svg-inline-loader',
                 },
                 {
                     test: /\.(woff2?|ttf|otf|eot|svg|png)$/,
@@ -174,7 +183,7 @@ module.exports = (
                 chunks: [
                     'javascript',
                 ],
-                baseTag: './'
+                baseTag: './',
             }),
             new HtmlWebpackPlugin({
                 template: path.join(SRC_DIR, 'ejs.ejs'),
@@ -184,7 +193,7 @@ module.exports = (
                 chunks: [
                     'typescript',
                 ],
-                baseTag: './'
+                baseTag: './',
             }),
             new WebpackAssetsManifest({
                 writeToDisk: true,
@@ -193,13 +202,12 @@ module.exports = (
                 // Emit compilation warning or error? (Default: `false`)
                 emitErrors: false,
                 // Display full duplicates information? (Default: `false`)
-                verbose: true
+                verbose: true,
             }),
             new MiniCssExtractPlugin({ // define where to save the file
                 filename: '[name].bundle.[contenthash].css',
             }),
             new CopyWebpackPlugin(options.staticFiles),
-            new webpack.LoaderOptionsPlugin(postCSSConfig),
             new VueLoaderPlugin(),
         ],
     }
